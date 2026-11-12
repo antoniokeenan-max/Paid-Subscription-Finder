@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscription Finder</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="bg-overlay" aria-hidden="true"></div>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-badge">AI-Powered Email Scan</div>
+      <h1>Paid Subscription Finder</h1>
+      <p>Enter an email address to discover associated paid subscriptions. Our AI bot scans for matches and displays results in descending order by monthly cost.</p>
+
+    </header>
+
+    <main>
+      <section class="search-card card">
+        <form id="search-form">
+          <label for="email">Email address</label>
+          <div class="search-row">
+            <input type="email" id="email" name="email" placeholder="name@example.com" required />
+            <button type="submit" id="search-btn">Search</button>
+          </div>
+        </form>
+        <p id="status" class="status" aria-live="polite"></p>
+      </section>
+
+      <section id="results" class="results hidden">
+        <div class="summary-grid">
+          <div class="card stat">
+            <span class="stat-label">Email</span>
+            <span id="summary-email" class="stat-value small"></span>
+          </div>
+          <div class="card stat">
+            <span class="stat-label">Subscriptions found</span>
+            <span id="summary-count" class="stat-value"></span>
+          </div>
+          <div class="card stat">
+            <span class="stat-label">Total monthly cost</span>
+            <span id="summary-total" class="stat-value"></span>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="card chart-card">
+            <h2>Monthly cost by subscription</h2>
+            <div class="chart-wrap"><canvas id="costChart"></canvas></div>
+          </div>
+          <div class="card chart-card">
+            <h2>Spending by category</h2>
+            <div class="chart-wrap"><canvas id="categoryChart"></canvas></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-header">
+            <h2>Subscriptions (descending by monthly cost)</h2>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Monthly cost</th>
+                  <th>Billing</th>
+                  <th>Start date</th>
+                  <th>Next billing</th>
+                </tr>
+              </thead>
+              <tbody id="results-body"></tbody>
+            </table>
+          </div>
+        </div>
+        <p id="note" class="note"></p>
+      </section>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
